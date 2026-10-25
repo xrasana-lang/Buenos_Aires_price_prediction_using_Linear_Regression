@@ -1,0 +1,5 @@
+[project]
+name = "buenos-aires-price-prediction-using-linear-regression"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = []
