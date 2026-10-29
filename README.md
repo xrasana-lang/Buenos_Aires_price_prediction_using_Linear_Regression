@@ -58,7 +58,7 @@ The raw listing data is not included in this repository (it comes from [SOURCE] 
 
 ## Reproducing
 
-Requires Python 3.12 and [`uv`](https://docs.astral.sh/uv/).
+Requires Python 3.12+ and [`uv`](https://docs.astral.sh/uv/).
 
 ```bash
 git clone https://github.com/xrasana-lang/Buenos_Aires_price_prediction_using_Linear_Regression.git
