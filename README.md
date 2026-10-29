@@ -32,7 +32,6 @@ The raw listing data is not included in this repository (it comes from [SOURCE] 
 
 - The model only applies to mid-sized apartments in Capital Federal under $400,000.
 - Outlier bounds were computed on the full dataset before the split, a small source of leakage.
-- [Add anything else you noticed.]
 
 ## Notebooks
 
@@ -59,7 +58,7 @@ The raw listing data is not included in this repository (it comes from [SOURCE] 
 
 ## Reproducing
 
-Requires Python [3.12] and [`uv`](https://docs.astral.sh/uv/).
+Requires Python 3.12 and [`uv`](https://docs.astral.sh/uv/).
 
 ```bash
 git clone https://github.com/xrasana-lang/Buenos_Aires_price_prediction_using_Linear_Regression.git
