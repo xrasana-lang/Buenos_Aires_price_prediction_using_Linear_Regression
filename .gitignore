@@ -218,3 +218,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project data (large; raw CSVs come from the course platform)
+data/raw/*
+data/processed/*
+
+# Keep the folder structure even when empty
+!data/raw/.gitkeep
+!data/processed/.gitkeep
