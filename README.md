@@ -10,6 +10,35 @@ A single-feature linear model (covered surface area) cuts test MAE from $45.2k (
 
 ![Price vs surface area](reports/figures/price_vs_surface.png)
 
+## Results by model
+
+All metrics are on the same held-out test set (1,250 listings, `random_state=42`), so the rows are directly comparable.
+
+| Model | Features | Test MAE | Test RMSE | Test R² |
+|---|---|---|---|---|
+| Mean baseline | none | $45,233 | n/a | about 0 |
+| Linear regression (2.2) | surface | $31,843 | $45,143 | 0.4529 |
+| Ridge, alpha=10 (2.3, CV-selected) | surface, lat, lon, neighborhood | $26,429 | $36,966 | 0.6331 |
+| Lasso, alpha=100 (2.3, CV-selected) | surface, lat, lon, neighborhood | $26,329 | $36,916 | 0.6341 |
+
+Adding location cuts test MAE by about 17% relative to the size-only model, and R² rises from 0.45 to 0.63. Ridge and Lasso perform the same within noise (RMSE differs by $49). Lasso reaches that accuracy with 51 of 59 features. The train-test RMSE gap is only about 11% for both, so regularization has little overfitting to fix: the remaining error comes from the linear form and the limited feature set.
+
+Surface area is worth about $2,219 per extra m² in the Lasso model, close to the $2,275 from the size-only model, so the gain comes from location, not from a different size effect. The strongest well-supported neighborhood effects are Palermo, Belgrano and Recoleta (positive) and Boca and Once (negative).
+
+![Top 10 Lasso coefficients](reports/figures/lasso_top10_coefficients.png)
+
+![Lasso residuals](reports/figures/lasso_residuals.png)
+
+## Limitations
+
+- **Errors grow with price.** Residuals stay within about $50k below $150k predicted but spread to $150k or more above $175k. A log-transformed target or a nonlinear model is the natural next step.
+- **Narrow scope.** Outliers were trimmed to the 10th-90th percentile of surface area, so the model only covers mid-sized apartments priced under about $400k.
+- **Small leakage.** The outlier bounds were computed on the full dataset before the train/test split.
+- **Suspicious listings.** A few listings are priced at roughly $5k-$15k and were not removed.
+- **Thin neighborhoods.** Some neighborhoods have very few training listings (for example Puerto Madero has 39, Las Cañitas 21, Villa Soldati and Pompeya 4 each), so their dollar effects are unreliable. Six listings have a blank neighborhood name.
+- **Coefficients are conditional.** Neighborhood effects are on top of surface, lat and lon and are shrunk by the Lasso penalty, so they are not raw price gaps.
+- **One fixed split.** All results come from a single 80/20 split; I did not repeat the evaluation across different splits.
+
 ## Data
 
 The raw listing data is not included in this repository (it comes from [SOURCE] and is not mine to redistribute).
