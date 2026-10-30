@@ -2,7 +2,7 @@
 
 Can we accurately predict apartment sale prices in Buenos Aires from size, type and location? This portfolio project works through the full supervised-learning workflow with scikit-learn: data cleaning, feature engineering, a leakage-free train/test split, a baseline, linear regression, and regularized models (Ridge and Lasso).
 
-**Status:** Lessons 2.1 (data preparation) and 2.2 (baseline and linear regression) complete. Regularized models in progress.
+**Status:** Lessons 2.1 (data preparation), 2.2 (baseline and linear regression) and 2.3 (Ridge and Lasso regularization) complete. Model comparison and selection (2.4) in progress.
 
 ## Headline results
 
@@ -41,7 +41,7 @@ The raw listing data is not included in this repository (it comes from [SOURCE] 
 |---|---|---|
 | 2.1 | `2.1_data_loading_cleaning_feature_engineering.ipynb` | Loading, filtering, outlier trim, feature extraction, missingness, multicollinearity, encoding, train/test split |
 | 2.2 | `2.2_baseline_and_linear_regression.ipynb` | Mean baseline, single-feature linear regression, residual diagnostics |
-| 2.3 | (to come) | Ridge and Lasso regularization |
+| 2.3 | `2.3_ridge_and_lasso_regularization.ipynb` | Scaling and pipelines, Ridge and Lasso, alpha sweeps, RidgeCV/LassoCV, coefficient interpretation, residual diagnostics |
 | 2.4 | (to come) | Model comparison and selection |
 
 ## Repo layout
@@ -53,7 +53,8 @@ The raw listing data is not included in this repository (it comes from [SOURCE] 
 │   └── processed/    # intermediate outputs (not committed)
 ├── notebooks/
 │   ├── 2.1_data_loading_cleaning_feature_engineering.ipynb
-│   └── 2.2_baseline_and_linear_regression.ipynb
+│   ├── 2.2_baseline_and_linear_regression.ipynb
+│   └── 2.3_ridge_and_lasso_regularization.ipynb
 ├── reports/
 │   └── figures/      # charts used in the README
 ├── src/
