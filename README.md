@@ -33,6 +33,7 @@ Surface area is worth about $2,219 per extra m² in the Lasso model, close to th
 
 - **Errors grow with price.** Residuals stay within about $50k below $150k predicted but spread to $150k or more above $175k. A log-transformed target or a nonlinear model is the natural next step.
 - **Narrow scope.** Outliers were trimmed to the 10th-90th percentile of surface area, so the model only covers mid-sized apartments priced under about $400k.
+- **Missing surface area.** 738 of the 8,774 filtered listings (about 8%) had no covered surface area and were dropped by the outlier step, so the model never sees them. Predictions for listings without a surface value are not possible with this model.
 - **Small leakage.** The outlier bounds were computed on the full dataset before the train/test split.
 - **Suspicious listings.** A few listings are priced at roughly $5k-$15k and were not removed.
 - **Thin neighborhoods.** Some neighborhoods have very few training listings (for example Puerto Madero has 39, Las Cañitas 21, Villa Soldati and Pompeya 4 each), so their dollar effects are unreliable. Six listings have a blank neighborhood name.
@@ -53,7 +54,7 @@ The raw listing data is not included in this repository (it comes from [SOURCE] 
 
 - Loaded five yearly CSVs with `glob` and combined them with `pd.concat`.
 - Restricted the market to Capital Federal apartments priced under $400,000, so the model learns one consistent segment.
-- Trimmed outliers to the 10th-90th percentile of surface area (about [N]% of listings removed, leaving 6,507 rows).
+- Trimmed outliers to the 10th-90th percentile of surface area (31-100 m²). Listings with missing surface area are also dropped by this step, so 2,267 of 8,774 filtered listings (about 26%) were removed, leaving 6,507 rows.
 - Extracted latitude, longitude and neighborhood from raw string columns.
 - Dropped columns with more than 50% missing values, one of each highly correlated feature pair, price-derived columns (leakage), identifiers and single-value columns.
 - One-hot encoded `neighborhood` with `category_encoders`, fitted on the training set only.
