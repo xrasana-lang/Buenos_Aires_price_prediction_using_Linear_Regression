@@ -2,11 +2,13 @@
 
 Can we accurately predict apartment sale prices in Buenos Aires from size, type and location? This portfolio project works through the full supervised-learning workflow with scikit-learn: data cleaning, feature engineering, a leakage-free train/test split, a baseline, linear regression, and regularized models (Ridge and Lasso).
 
-**Status:** Lesson 2.1 (data preparation) complete. Modeling notebooks in progress.
+**Status:** Lessons 2.1 (data preparation) and 2.2 (baseline and linear regression) complete. Regularized models in progress.
 
 ## Headline results
 
-_To be filled in after lesson 2.4: best model, test MAE, RMSE and R², and one chart._
+A single-feature linear model (covered surface area) cuts test MAE from $45.2k (mean baseline) to $31.8k (-29.6%), with test R² = 0.45. Train and test metrics agree, so the limit is the feature set, not overfitting. Each extra m² is associated with about $2,275 of additional price. Errors grow with price (residuals fan out above about $150k), and predictions cap near $240k. Lessons 2.3 and 2.4 add location and regularization to address this.
+
+![Price vs surface area](reports/figures/price_vs_surface.png)
 
 ## Data
 
@@ -38,7 +40,7 @@ The raw listing data is not included in this repository (it comes from [SOURCE] 
 | Lesson | Notebook | Covers |
 |---|---|---|
 | 2.1 | `2.1_data_loading_cleaning_feature_engineering.ipynb` | Loading, filtering, outlier trim, feature extraction, missingness, multicollinearity, encoding, train/test split |
-| 2.2 | (to come) | Baseline and linear regression |
+| 2.2 | `2.2_baseline_and_linear_regression.ipynb` | Mean baseline, single-feature linear regression, residual diagnostics |
 | 2.3 | (to come) | Ridge and Lasso regularization |
 | 2.4 | (to come) | Model comparison and selection |
 
@@ -50,7 +52,12 @@ The raw listing data is not included in this repository (it comes from [SOURCE] 
 │   ├── raw/          # source CSVs (not committed)
 │   └── processed/    # intermediate outputs (not committed)
 ├── notebooks/
-│   └── 2.1_data_loading_cleaning_feature_engineering.ipynb
+│   ├── 2.1_data_loading_cleaning_feature_engineering.ipynb
+│   └── 2.2_baseline_and_linear_regression.ipynb
+├── reports/
+│   └── figures/      # charts used in the README
+├── src/
+│   └── wrangle.py    # reusable cleaning pipeline
 ├── pyproject.toml
 ├── uv.lock
 └── README.md
