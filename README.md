@@ -60,9 +60,11 @@ Four candidates were compared on identical data (same cleaned rows, features, sp
 
 ## Data
 
-The raw listing data is not included in this repository (it comes from [SOURCE] and is not mine to redistribute).
+The raw listing data is not included in this repository. The five CSV files (`buenos-aires-real-estate-1.csv` through `buenos-aires-real-estate-5.csv`) were provided as part of the course materials, so I do not redistribute them.
 
-1. Download `buenos-aires-real-estate-1.csv` through `buenos-aires-real-estate-5.csv` from [LINK OR INSTRUCTIONS].
+To reproduce the results:
+
+1. Obtain the five CSV files from the same course materials.
 2. Place them in `data/raw/`.
 3. Run the notebooks in `notebooks/` in order.
 
